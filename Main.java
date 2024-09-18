@@ -1,30 +1,39 @@
-/**
- * Main.java - Driver class to demonstrate revised historical examples
- * 
- * @author ???
- * @version ???
- */
-
 public class Main {
-	public static void main(String[] args) {
-		String tulsaDescription = "A black teenager, who was working as a shoe shiner in downtown Tulsa, Oklahoma, was arrested and accused of assaulting a white woman on a public elevator in broad daylight. A group of white vigilantes, intent on lynching him, and armed black men intent on protecting him gathered at the courthouse. A shot rang out, and the violence began. The riot resulted in 35 square blocks of destruction, including more than 1,250 homes, churches, schools, businesses, a hospital, and a library.";
-		Date tulsaDay = new Date(5, 31, 1921);
-		HistoricalEvent tulsaRiot = new HistoricalEvent(tulsaDescription, tulsaDay);
+	public static void main(String[] args) 
+	{
+        HistoricalEvent[] array = new HistoricalEvent[11];
+        array[0] = new HistoricalEvent("Wave of strikes begins in Poland.", new Date(4, 21, 1988));
+        array[1] = new HistoricalEvent("Strikes at the July Manifesto coal mine; workers demand re-legalization of Solidarity.", new Date(8, 15, 1988));
+        array[2] = new HistoricalEvent("Lech Wałęsa invited to Warsaw for talks with communist authorities.", new Date(8, 31, 1988));
+        array[3] = new HistoricalEvent("Round Table discussions begin in Warsaw.", new Date(2, 6, 1989));
+        array[4] = new HistoricalEvent("Round Table Agreement signed, legalizing Solidarity and allowing partly free elections.", new Date(4, 4, 1989));
+        array[5] = new HistoricalEvent("Solidarity achieves overwhelming victory in parliamentary elections.", new Date(6, 4, 1989));
+        array[6] = new HistoricalEvent("Tadeusz Mazowiecki nominated as Prime Minister, marking a shift to non-communist leadership.", new Date(8, 19, 1989));
+        array[7] = new HistoricalEvent("Sejm amends the constitution, changing the country's name to the Republic of Poland.", new Date(12, 29, 1989));
+        array[8] = new HistoricalEvent("Communist Polish United Workers' Party dissolves itself.", new Date(1, 29, 1990));
+        array[9] = new HistoricalEvent("Wałęsa becomes the first non-communist president of Poland.", new Date(11, 21, 1990));
+        RevisedHistoricalEvent revisedEvent = new RevisedHistoricalEvent("Round Table Agreement signed, legalizing Solidarity and allowing partly free elections.", new Date(4, 4, 1989), "The Round Table talks resulted in significant political reforms and the establishment of a democratic government.", "Source: Revolutions of 1989 - Wikipedia");
+        array[10] = revisedEvent;
 
-		System.out.println("====================================================");
-		System.out.println("HISTORICAL EVENT EXAMPLE:");
-		System.out.println("====================================================");
-		System.out.println(tulsaRiot);
-		
-		
-		String tulsaRevised = "It started with newspaper reports that a black man had assaulted a white elevator operator. He was arrested, and black World War I vets rushed to the courthouse to prevent a lynching. Whites were deputized and handed weapons, the shooting started and then it got out of hand. It was mob rule for two days, and the result was the complete devastation of the entire black community. The white mobs looted the homes and businesses before they set fire to the community. Planes circled mid-air and bombed what was known as Black Wall Street. The National Guard was called out after the governor declared martial law, and imprisoned all blacks that were not already in jail. More than 35 blocks were destroyed, along with more than 1,200 homes, and some 300 people died, mostly Blacks.",
-			tulsaCitation = "https://www.smithsonianmag.com/smithsonian-institution/long-lost-manuscript-contains-searing-eyewitness-account-tulsa-race-massacre-1921-180959251/";
-		RevisedHistoricalEvent tulsaMassacre = new RevisedHistoricalEvent(tulsaDescription, tulsaDay,
-			tulsaRevised, tulsaCitation);
-		
-		System.out.println("\n====================================================");
-		System.out.println("REVISED HISTORICAL EVENT EXAMPLE:");
-		System.out.println("====================================================");
-		tulsaMassacre.teach();
-	}
+		for (int j = 0; j < array.length - 1; j++) 
+		{
+			for (int i = 0; i < array.length - 1 - j; i++) 
+			{
+				if (array[i].compareTo(array[i + 1]) > 0) 
+				{
+                    HistoricalEvent temp = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = temp;
+                }
+            }
+        }
+
+		for (int i = 0; i < array.length - 1; i++) 
+		{ 
+            array[i].teach();
+        }
+        System.out.println("====================================================");
+        System.out.println("REVISED HISTORICAL EVENT:");
+        System.out.println("====================================================");
+    }
 }
